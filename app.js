@@ -1,15 +1,24 @@
 const express = require("express");
+const path = require("path");
 
 const app = express();
-app.get('/',(req,res)=>{
+const myLogger = (req, res, next) => {
+  console.log("MiddleWare log 1");
+  next();
+};
+const myLogger2 = (req, res, next) => {
+  console.log("MiddleWare log 2");
+  next();
+};
 
-    const photo = {
-        id:1,
-        name :'photo name',
-        description:'Photo Description'
-    }
-    res.send(photo)
-})
+// MIDDLEWARES
+app.use(express.static("public"));
+
+app.get("/", (req, res) => {
+  // dosyayo içeri çektik
+  // express static middleware kullandık
+  res.sendFile(path.resolve(__dirname, "tmp/index.html"));
+});
 const port = 3000;
 app.listen(port, () => {
   console.log(`sunucu ${port} portunda başlatıldı`);
