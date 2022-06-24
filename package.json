@@ -1,0 +1,27 @@
+{
+  "name": "pcat",
+  "version": "1.0.0",
+  "description": "MGFFotoApp",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MGFedai/WebSitePicture.git"
+  },
+  "keywords": [
+    "photo",
+    "app",
+    "camera"
+  ],
+  "author": "Mustafa Gorkem Fedai",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MGFedai/WebSitePicture/issues"
+  },
+  "homepage": "https://github.com/MGFedai/WebSitePicture#readme",
+  "devDependencies": {
+    "prettier": "2.7.1"
+  }
+}
