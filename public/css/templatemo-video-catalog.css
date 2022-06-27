@@ -46,7 +46,8 @@ h2, p { color: #666666; }
 }
 
 .tm-site-logo { font-size: 3rem; }
-.tm-site-name { font-size: 1.9rem; }
+.tm-site-name { font-size: 1.9rem;
+                margin-top: -10px; }
 
 #tm-video-container {
     max-height: 720px;
@@ -229,7 +230,7 @@ h2, p { color: #666666; }
     justify-content: center;
     background-color: rgba(0,0,0,0.4);
     cursor: pointer;
-    transition: all 0.3s ease: ;
+    transition: all 0.3s  ;
 }
 
 .tm-overlay-icon {
