@@ -7,7 +7,7 @@ const path = require("path");
 const Photo = require("./models/Photo");
 const fs = require("fs");
 const photoController = require('./controllers/photoControllers')
-const pageController = require('./controllers/pageControllers')
+const pageController = require('./controllers/pagecontrollers')
 
 const app = express();
 
