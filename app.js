@@ -43,6 +43,7 @@ app.get("/about",pageController.getAboutPage);
 app.get("/add",pageController.getAddPage);
 
 app.get("/", async (req, res) => {
+  getport()
   const photos = await Photos.find({});
   res.render("index", {
     photos,
@@ -51,9 +52,12 @@ app.get("/", async (req, res) => {
 
 ;
 
+function getport (){
+  console.log(port)
+}
+ 
 
-
-const port = process.env.PORT;
+const port = process.env.PORT || 3031;
 app.listen(port, () => {
   console.log(`sunucu ${port} portunda başlatıldı`);
 });
