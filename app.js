@@ -1,50 +1,59 @@
 const express = require("express");
-const mongoose = require('mongoose');
-const ejs =require('ejs');
+const mongoose = require("mongoose");
+const methodOverride = require("method-override");
+const fileUpload = require("express-fileupload");
+const ejs = require("ejs");
 const path = require("path");
-const Photo = require('./models/Photo');
+const Photo = require("./models/Photo");
+const fs = require("fs");
+const photoController = require('./controllers/photoControllers')
+const pageController = require('./controllers/pageControllers')
+
 const app = express();
 
 // connect  DB
 
-mongoose.connect('mongodb://localhost/pcat-test-db');
+mongoose.connect("mongodb+srv://gorkem35:19031903Aa.@cluster0.dlb3l.mongodb.net/pcat-db?retryWrites=true&w=majority").then(()=>{
+  console.log('DB CONNECTED')
+}).catch((err)=>{
+  console.log(err)
+});
 
 //TEMPLATE ENGİNE
 app.set("view engine", "ejs");
 
 // MIDDLEWARES
-app.use(express.static('public')); // Static dosyaları koyacağımız klasörü seçtik
+app.use(express.static("public")); // Static dosyaları koyacağımız klasörü seçtik
 app.use(express.urlencoded({ extended: true })); // Body parser okuyoruz
 app.use(express.json()); // Body parser dönüştürüyoruz
+app.use(fileUpload());
+app.use(
+  methodOverride("_method", {
+    methods: ["POST", "GET"],
+  })
+);
 // ROUTES
+app.get("/",photoController.getAllPhotos);
+app.get("/photos/:id",photoController.getPhoto);
+app.post("/photos",photoController.createPhotos);
+app.put("/photos/:id",photoController.updatePhoto);
+app.delete("/photos/:id",photoController.deletePhoto);
+app.get("/photos/edit/:id",pageController.getEditPage);
+app.get("/about",pageController.getAboutPage);
+app.get("/add",pageController.getAddPage);
+
 app.get("/", async (req, res) => {
-  const photos = await Photo.find({})
-  // dosyayo içeri çektik
-  // express static middleware kullandık
-  //res.sendFile(path.resolve(__dirname, "tmp/index.html"));
-  res.render('index',{
-    photos
-      })
+  const photos = await Photos.find({});
+  res.render("index", {
+    photos,
+  });
 });
-app.get("/about", (req, res) => {
-  res.render('about')
-});
-app.get("/add", (req, res) => {
-  res.render('add')
-});
-app.post('/photos', async (req, res) => { // async - await yapısı kullanacğız.
-  await Photo.create(req.body)// body bilgisini Photo modeli sayesinde veritabanında dökümana dönüştürüyoruz.
-  res.redirect('/')
-});
-app.get('/', async (req, res) => {
-  const photos = await Photos.find({})
-  res.render('index', {
-    photos
-  })});
+
+;
 
 
 
-const port = 5000;
+const port = process.env.PORT ||3000;
 app.listen(port, () => {
   console.log(`sunucu ${port} portunda başlatıldı`);
 });

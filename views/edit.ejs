@@ -29,9 +29,9 @@ https://templatemo.com/tm-552-video-catalog
 					<div class="row mt-3 mb-5 pb-3">
 						<div class="col-12">
 							<div class="mx-auto tm-about-text-container px-3">
-								<h2 class="tm-page-title mb-4 tm-text-primary">Bizimle İletişime Geçin</h2>
+								<h2 class="tm-page-title mb-4 tm-text-primary">Fotoğrafı düzenleyin</h2>
                                 <p class="mb-4">
-                                    FEDAİDURMAZ MOBİLYA olarak siz müşterilerimizin görüş ve değerlendirmelerine <u>önem veriyoruz.</u> Yaşadığınız olumlu ve olumsuz deneyimleri bizlerle paylaşın! 
+                                    sizlere şimdilik görsel güncellemesi  <u>sunuyoruz</u> ilerleyen zamanda düzenlemeler gelecektir.
                                 </p>
                                 <p class="mb-4">Müşteri odaklı çalışan mağazalarımaza gelmeden önce randevu almanızı rica ederiz. Randevu saatinizi mesajda belirtilerek sizlere özel çalışma saatlerimizle hizmet vermeye devam ediyoruz. <a rel="nofollow" target="_parent" href="https://fedaidurmazmobilya.com" class="tm-text-primary">FEDAİDURMAZ MOBİLYA</a>, bizimle iletişime geçin.</p>
 							</div>							
@@ -40,33 +40,20 @@ https://templatemo.com/tm-552-video-catalog
                     <div class="mx-auto pb-3 tm-about-text-container px-3">
                         <div class="row">
                             <div class="col-lg-6 mb-5">
-                              
-                                <form id="contact-form" action="/photos" method="POST" class="tm-contact-form" encType="multipart/form-data">
+                                <form method="POST" id="contact-form" action="/photos/<%= photo._id%>?_method=PUT"class="tm-contact-form" encType="multipart/form-data">
                                   
                                   <div class="form-group">
-                                    <input type="text" name="title" class="form-control rounded-0" placeholder="İsminiz" required/>
+                                    <input type="text" name="title" value="<%= photo.title%>" class="form-control rounded-0" placeholder="İsminiz" required/>
                                   </div>
-                                  <div class="form-group">
-                                    <input type="email" name="email" class="form-control rounded-0" placeholder="Email Adresiniz" required="" />
-                                  </div>
-                                  <div class="form-group">
-                                    <select class="form-control" id="contact-select" name="inquiry">
-                                      <option value="-">Seçim Yapınız</option>
-                                      <option value="sales">Yatak &amp; Setleri</option>
-                                      <option value="creative">Salon Takımları</option>
-                                      <option value="uiux">Yatak Odası Takımları</option>
-                                    </select>
-                                  </div>
+                                  
                                   <div class="form-group">
                                     <textarea rows="8" name="message" class="form-control rounded-0" placeholder=" Bizlere İletmek İstediğiniz Mesajınız"
-                                              required=""></textarea>
+                                              required><%= photo.message %></textarea>
                                   </div>
-                                  <div class="form-group">
-                                    <input type="file" name="image" class="form-control-file rounded-0">
-                                  </div>
+                                  
 
                                   <div class="form-group mb-0">
-                                    <button type="submit" class="btn btn-primary rounded-0 d-block ml-auto mr-0 tm-btn-animate tm-btn-submit tm-icon-submit"><span>Gönder</span></button>
+                                    <button type="submit" class="btn btn-primary rounded-0 d-block ml-auto mr-0 tm-btn-animate tm-btn-submit tm-icon-submit"><span>UPDATE</span></button>
                                   </div>
                                 </form>    
                             </div>
